@@ -1,0 +1,32 @@
+﻿@model OLSoftwareTest.Models.DTO.NivelesConocimiento
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h3>Está seguro de eliminar el registro?</h3>
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre_nivel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre_nivel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descripcion_nivel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descripcion_nivel)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteConfirm">
+        <input type="hidden" asp-for="id_nivel" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-info">Regresar</a>
+    </form>
+</div>

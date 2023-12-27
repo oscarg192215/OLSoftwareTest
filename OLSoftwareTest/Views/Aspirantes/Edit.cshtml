@@ -1,0 +1,111 @@
+﻿@model OLSoftwareTest.Models.AspirantesViewModel
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h4>Aspirantes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_prueba_aspirante" />
+            <input type="hidden" asp-for="id_aspirante" />
+            <input type="hidden" asp-for="nombre_prueba" />
+            <div class="form-group">
+                <label class="control-label">Usuario Asociado</label>
+                <select id="Usuario" asp-for="id_login" class="form-control" asp-items="ViewBag.Usuarios"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre_aspirante" class="control-label"></label>
+                <input asp-for="nombre_aspirante" class="form-control" />
+                <span asp-validation-for="nombre_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido_aspirante" class="control-label"></label>
+                <input asp-for="apellido_aspirante" class="form-control" />
+                <span asp-validation-for="apellido_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="documento_aspirante" class="control-label"></label>
+                <input asp-for="documento_aspirante" class="form-control" />
+                <span asp-validation-for="documento_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_nacimiento_aspirante" class="control-label"></label>
+                <input asp-for="fecha_nacimiento_aspirante" class="form-control" />
+                <span asp-validation-for="fecha_nacimiento_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="celular_aspirante" class="control-label"></label>
+                <input asp-for="celular_aspirante" class="form-control" />
+                <span asp-validation-for="celular_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email_aspirante" class="control-label"></label>
+                <input asp-for="email_aspirante" class="form-control" />
+                <span asp-validation-for="email_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="direccion_aspirante" class="control-label"></label>
+                <input asp-for="direccion_aspirante" class="form-control" />
+                <span asp-validation-for="direccion_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="pais_aspirante" class="control-label"></label>
+                <input asp-for="pais_aspirante" class="form-control" />
+                <span asp-validation-for="pais_aspirante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ciudad_aspirante" class="control-label"></label>
+                <input asp-for="ciudad_aspirante" class="form-control" />
+                <span asp-validation-for="ciudad_aspirante" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="id_prueba" class="control-label">Prueba</label>
+                @if (Model != null)
+                {
+                    <select asp-for="id_prueba" id="id_prueba" class="form-control">
+                        @foreach (var pruebas in ViewBag.Pruebas)
+                        {
+                            if (Model.id_prueba == pruebas.id_prueba)
+                            {
+                                <option value="@pruebas.id_prueba" selected>@pruebas.nombre_prueba</option>
+                            }
+                            else
+                            {
+                                <option value="@pruebas.id_prueba">@pruebas.nombre_prueba</option>
+                            }
+                        }
+                    </select>
+                }
+            </div>           
+            <div class="form-group">
+                <label asp-for="cantidad_preguntas" class="control-label"></label>
+                <input asp-for="cantidad_preguntas" readonly class="form-control" />
+                <span asp-validation-for="cantidad_preguntas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_inicio" class="control-label"></label>
+                <input id="fecha_inicio" asp-for="fecha_inicio" class="form-control" />
+                <span asp-validation-for="fecha_inicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_finalizacion" class="control-label"></label>
+                <input id="fecha_finalizacion" asp-for="fecha_finalizacion" class="form-control" />
+                <span asp-validation-for="fecha_finalizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceptar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-info">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/js/aspirantes.js"></script>
+

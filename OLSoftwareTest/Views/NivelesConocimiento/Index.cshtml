@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OLSoftwareTest.Models.DTO.NivelesConocimiento>
+
+@{
+    ViewData["Title"] = "Niveles de Conocimiento";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_nivel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion_nivel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+         @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_nivel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion_nivel)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id_nivel" class="btn btn-primary">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.id_nivel" class="btn btn-info">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id_nivel" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    No hay registros para mostrar
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

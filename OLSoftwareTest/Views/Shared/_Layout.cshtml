@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OLSoftwareTest</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    @{
+        string username = User.Identity.Name;
+    }
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">OLSoftware</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @if (User.IsInRole("admin"))
+                {
+                    <li><a class="nav-link" href="/Home/Index">Listado Candidatos<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administrativo
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/Aspirantes/Index">Aspirantes</a>
+                            <a class="dropdown-item" href="/Pruebas/Index">Pruebas</a>
+                            <a class="dropdown-item" href="/Preguntas/Index">Preguntas</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/NivelesConocimiento/Index">Niveles de Conocimiento</a>
+                            <a class="dropdown-item" href="/TipoPrueba/Index">Tipos de Prueba</a>
+                            <a class="dropdown-item" href="/LenguajesProgramacion/Index">Lenguajes de Programación</a>
+                            <a class="dropdown-item" href="/EstadosPruebaAspirante/Index">Estados de Pruebas</a>
+                        </div>
+                    </li>
+                }
+                @if (!string.IsNullOrEmpty(User.Identity.Name) && !User.IsInRole("admin"))
+                {
+                    <li><a class="nav-link" href="/Candidato/Index">Listado Pruebas<span class="sr-only">(current)</span></a></li>
+                }
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            @if (!string.IsNullOrEmpty(User.Identity.Name))
+                            {
+                                <span class="navbar-text" style="padding-right:20px; -webkit-text-stroke-width: medium;text-transform: capitalize;">
+                                    Bienvenido @username
+                                </span>
+                                <li class="nav-item" style="margin-right: 5px">
+                                    <a class="nav-link btn btn-outline-info" href="/UserAuthentication/ChangePassword">Cambiar Clave</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-info" href="/UserAuthentication/Logout">Cerrar Sesión</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container" style="height: 75px;">
+        <main role="main">
+            @{
+                var successMessage = TempData["successMessage"]?.ToString();
+                var errorMessage = TempData["errorMessage"]?.ToString();
+            }
+            @if (!string.IsNullOrWhiteSpace(@successMessage))
+            {
+                <div class="row no-gutters">
+                    <div class="col-lg-2 col-md-8 ml-auto">
+                        <div class="alert alert-success fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="True">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Bien hecho!</h4>
+                            <p>@successMessage</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (!string.IsNullOrWhiteSpace(@errorMessage))
+            {
+                <div class="row no-gutters">
+                    <div class="col-lg-2 col-md-8 ml-auto">
+                        <div class="alert alert-danger fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="True">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Algo salió mal!</h4>
+                            <p>@successMessage</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </main>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/customjs.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+   
+</body>
+</html>

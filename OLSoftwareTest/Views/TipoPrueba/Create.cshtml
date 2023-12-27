@@ -1,0 +1,36 @@
+﻿@model OLSoftwareTest.Models.DTO.TiposPruebas
+
+@{
+    ViewData["Title"] = "Nuevo";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h4>Tipos de Pruebas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nombre_tipo_prueba" class="control-label"></label>
+                <input asp-for="nombre_tipo_prueba" class="form-control" />
+                <span asp-validation-for="nombre_tipo_prueba" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion_tipo_prueba" class="control-label"></label>
+                <input asp-for="descripcion_tipo_prueba" class="form-control" />
+                <span asp-validation-for="descripcion_tipo_prueba" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceptar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-info">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,48 @@
+﻿@using OLSoftwareTest.Models.DTO;
+@model OLSoftwareTest.Models.PreguntasViewModel
+@{
+    List<NivelesConocimiento> _nivelesConocimiento = ViewBag.NivelesConocimiento;
+    List<LenguajesProgramacion> _lenguajesProgramacion = ViewBag.LenguajesProgramacion;
+    ViewData["Title"] = "Nuevo";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h4>Pregunta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id_nivel" class="control-label">Nivel Conocimiento</label>
+                <select asp-for="id_nivel" id="id_nivel" class="form-control">
+                    @foreach (var niveles in _nivelesConocimiento)
+                    {
+                        <option value="@niveles.id_nivel">@niveles.nombre_nivel</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Lenguaje de Programacion</label>
+                <select asp-for="id_lenguaje" id="id_lenguaje" class="form-control">
+                    @foreach (var lenguajes in _lenguajesProgramacion)
+                    {
+                        <option value="@lenguajes.id_lenguaje">@lenguajes.nombre_lenguaje</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="contenido_pregunta" class="control-label"></label>
+                <textarea rows="3" cols="45" asp-for="contenido_pregunta"></textarea>
+                <span asp-validation-for="contenido_pregunta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceptar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-info">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+

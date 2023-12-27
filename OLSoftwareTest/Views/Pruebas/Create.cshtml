@@ -1,0 +1,57 @@
+﻿@using OLSoftwareTest.Models.DTO;
+@model OLSoftwareTest.Models.PruebasViewModel
+
+@{
+    var _estadosPruebas = ViewBag.EstadosPruebas;
+    
+    ViewData["Title"] = "Nuevo";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h4>Pruebas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nombre_prueba" class="control-label"></label>
+                <input asp-for="nombre_prueba" class="form-control" />
+                <span asp-validation-for="nombre_prueba" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tipo de Prueba</label>
+                <select id="TiposPruebas" asp-for="id_tipo_prueba" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nivel Conocimiento</label>
+                <select id="NivelesConocimiento" asp-for="id_nivel" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Lenguaje de Programacion</label>
+                <select id="LenguajesProgramacion" asp-for="id_lenguaje" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Preguntas</label>
+                <div id="Preguntas" class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Estado Prueba</label>
+                <select asp-for="id_estado_prueba_aspirante" id="id_estado_prueba_aspirante" class="form-control">
+                    <option value="0">Seleccione...</option>
+                    @foreach (var estados in _estadosPruebas)
+                    {
+                        <option value="@estados.id_estado_prueba_aspirante">@estados.nombre_estado</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceptar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-info">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/js/cargarselectlist.js"></script>

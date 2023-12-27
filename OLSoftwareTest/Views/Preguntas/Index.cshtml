@@ -1,0 +1,62 @@
+﻿@model IEnumerable<OLSoftwareTest.Models.PreguntasViewModel>
+
+@{
+    ViewData["Title"] = "Preguntas";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Pregunta")
+            </th>
+            <th>
+                @Html.DisplayName("Lenguaje")
+            </th>
+            <th>
+                @Html.DisplayName("Nivel")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contenido_pregunta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LenguajesProgramacion.nombre_lenguaje)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NivelesConocimiento.nombre_nivel)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id_pregunta" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.id_pregunta" class="btn btn-info"><i class="bi bi-eye"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.id_pregunta" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    <div>
+                        No hay registros para mostrar
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+﻿@model OLSoftwareTest.Models.DTO.Preguntas
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h3>Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayName("Lenguaje")
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var names in ViewBag.LenguajesProgramacion)
+            {
+                var nivel = ((OLSoftwareTest.Models.DTO.LenguajesProgramacion)names);
+                @if (nivel.id_lenguaje == Model.id_lenguaje)
+                {
+                    @nivel.nombre_lenguaje
+                    ;
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Nivel")
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var names in ViewBag.NivelesConocimiento)
+            {
+                var nivel = ((OLSoftwareTest.Models.DTO.NivelesConocimiento)names);
+                @if (nivel.id_nivel == Model.id_nivel)
+                {
+                    @nivel.nombre_nivel
+                }
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.contenido_pregunta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.contenido_pregunta)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteConfirm">
+        <input type="hidden" asp-for="id_pregunta" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-info">Regresar</a>
+    </form>
+</div>

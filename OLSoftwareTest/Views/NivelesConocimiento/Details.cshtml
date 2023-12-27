@@ -1,0 +1,31 @@
+﻿@model OLSoftwareTest.Models.DTO.NivelesConocimiento
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<div>
+    <h4>Niveles de Conocimiento</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre_nivel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre_nivel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descripcion_nivel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descripcion_nivel)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id_nivel" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index" class="btn btn-info">Regresar</a>
+</div>

@@ -1,0 +1,23 @@
+{
+  "detalle": {
+    "userName": "oscarg",
+    "nombreAspirante": "tywty",
+    "apellidoAspirante": "tyerty",
+    "fechaNacimiento": "2023-11-27",
+    "celular": "3017680459",
+    "email": "dddd@gmail",
+    "direccion": "carrera 5B # 190A-35",
+    "pais": "Colombia",
+    "ciudad": "Bogota",
+    "documento": "4345345",
+    "nombrePrueba": "prueba modif",
+    "cantidadPreguntas": "3",
+    "fechaInicio": "2023-12-26",
+    "fechaFinalizacion": "2023-12-31"
+  },
+  "preguntas": [
+    "¿Cómo se implementa el manejo avanzado de excepciones en C#?",
+    "Explique el uso de delegados y eventos en C#.",
+    "Hable sobre el manejo de transacciones en aplicaciones C#."
+  ]
+}

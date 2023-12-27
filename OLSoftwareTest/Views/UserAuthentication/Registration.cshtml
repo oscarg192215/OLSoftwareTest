@@ -1,0 +1,66 @@
+﻿@model OLSoftwareTest.Models.DTO.RegistrationModel
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 center-block">
+            <h3>Registro Nuevo</h3>
+            <form asp-action="Registration" method="post">
+                <div class="form-group">
+                    <label>Nombre*</label>
+                    <input type="text" class="form-control" asp-for="FirstName"/>
+                    <span class="text-danger"  asp-validation-for="FirstName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Apellido*</label>
+                    <input type="text" class="form-control" asp-for="LastName" />
+                    <span class="text-danger" asp-validation-for="LastName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre de Usuario*</label>
+                    <input type="text" class="form-control" asp-for="Username" />
+                    <span class="text-danger" asp-validation-for="Username"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Clave (ej. Test@123)*</label>
+                    <input type="password" class="form-control" asp-for="Password" />
+                    <span class="text-danger" asp-validation-for="Password"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Confirmar Clave*</label>
+                    <input type="password" class="form-control" asp-for="PasswordConfirm" />
+                    <span class="text-danger" asp-validation-for="PasswordConfirm"></span>
+
+                </div>
+
+               
+                
+                @if (TempData["msg"] != null)
+                {
+                    <div class="form-group">
+                       <span class="text-info">@TempData["msg"]</span>
+                    </div>
+                }
+
+                <button type="submit" class="btn btn-info">Registro</button>
+                <a class="btn btn-primary" href="/UserAuthentication/Login">Inicio Sesion</a>
+            </form>
+        </div>
+    </div>
+</div>

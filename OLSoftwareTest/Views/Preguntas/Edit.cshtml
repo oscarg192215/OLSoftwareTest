@@ -1,0 +1,73 @@
+﻿@using OLSoftwareTest.Models.DTO;
+@model OLSoftwareTest.Models.DTO.Preguntas
+
+@{
+    List<NivelesConocimiento> _nivelesConocimiento = ViewBag.NivelesConocimiento;
+    List<LenguajesProgramacion> _lenguajesProgramacion = ViewBag.LenguajesProgramacion;
+    ViewData["Title"] = "Editar";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h4>Pregunta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_pregunta" />            
+            <div class="form-group">
+                <label asp-for="id_nivel" class="control-label">Nivel Conocimiento</label>
+                <select asp-for="id_nivel" id="id_nivel" class="form-control">
+                    @foreach (var niveles in _nivelesConocimiento)
+                    {
+                        if (Model.id_nivel == niveles.id_nivel)
+                        {
+                            <option value="@niveles.id_nivel" selected>@niveles.nombre_nivel</option>
+                        }
+                        else
+                        {
+                            <option value="@niveles.id_nivel">@niveles.nombre_nivel</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="id_nivel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_lenguaje" class="control-label">Lenguaje Programacion</label>
+                @if (Model != null)
+                {
+                    <select asp-for="id_lenguaje" id="LenguajesProgramacion" class="form-control">
+                        @foreach (var lenguajesProgramacion in ViewBag.LenguajesProgramacion)
+                        {
+                            if (Model.id_lenguaje == lenguajesProgramacion.id_lenguaje)
+                            {
+                                <option value="@lenguajesProgramacion.id_lenguaje" selected>@lenguajesProgramacion.nombre_lenguaje</option>
+                            }
+                            else
+                            {
+                                <option value="@lenguajesProgramacion.id_lenguaje">@lenguajesProgramacion.nombre_lenguaje</option>
+                            }
+                        }
+                    </select>
+                }
+                <span asp-validation-for="id_lenguaje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="contenido_pregunta" class="control-label"></label>
+                <textarea rows="3" cols="45" asp-for="contenido_pregunta"></textarea>
+                <span asp-validation-for="contenido_pregunta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceptar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-info">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

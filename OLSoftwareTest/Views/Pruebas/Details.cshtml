@@ -1,0 +1,106 @@
+﻿@model OLSoftwareTest.Models.PruebasViewModel
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<div>
+    <h4>Prueba</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayName("NombrePrueba")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.nombre_prueba)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Cantidad Preguntas")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cantidad_preguntas)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Tipo Prueba")
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var names in ViewBag.TiposPruebas)
+            {
+                var nivel = ((OLSoftwareTest.Models.DTO.TiposPruebas)names);
+                @if (nivel.id_tipo_prueba == Model.id_tipo_prueba)
+                {
+                    @nivel.nombre_tipo_prueba
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Lenguaje")
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var names in ViewBag.LenguajesProgramacion)
+            {
+                var nivel = ((OLSoftwareTest.Models.DTO.LenguajesProgramacion)names);
+                @if (nivel.id_lenguaje == Model.id_lenguaje)
+                {
+                    @nivel.nombre_lenguaje
+                    ;
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Nivel")
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var names in ViewBag.NivelesConocimiento)
+            {
+                var nivel = ((OLSoftwareTest.Models.DTO.NivelesConocimiento)names);
+                @if (nivel.id_nivel == Model.id_nivel)
+                {
+                    @nivel.nombre_nivel
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <label class="control-label">Preguntas</label>
+    <div id="Preguntas" class="form-control">
+        @foreach (var names in ViewBag.Preguntas)
+        {
+            var preguntas = Model.Preguntas.ToArray().Where(x => x.id_pregunta == ((OLSoftwareTest.Models.DTO.Preguntas)names).id_pregunta);
+            @if (preguntas != null && preguntas.Any())
+            {
+
+                <dl class="row">
+                    <dd class="col-sm-10">
+                        <i class="bi bi-check-circle"></i>@names.contenido_pregunta
+                    </dd>
+                </dl>
+            }
+        }
+    </div>
+</div>
+<div class="form-group">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayName("Estado Prueba")
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var names in ViewBag.EstadosPruebas)
+            {
+                var nivel = ((OLSoftwareTest.Models.DTO.EstadosPruebaAspirante)names);
+                @if (nivel.id_estado_prueba_aspirante == Model.id_estado_prueba_aspirante)
+                {
+                    @nivel.nombre_estado
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id_prueba" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index" class="btn btn-info">Regresar</a>
+</div>

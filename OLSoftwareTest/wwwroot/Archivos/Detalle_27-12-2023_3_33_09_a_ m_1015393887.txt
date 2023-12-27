@@ -1,0 +1,22 @@
+{
+  "detalle": {
+    "userName": "oscarg",
+    "nombreAspirante": "Oscar",
+    "apellidoAspirante": "Gutierrez",
+    "fechaNacimiento": "1986-04-15",
+    "celular": "3017680459",
+    "email": "oscargutierrez192215@gmail.com",
+    "direccion": "carrera 5B # 190A-35",
+    "pais": "Colombia",
+    "ciudad": "Bogota",
+    "documento": "1015393887",
+    "nombrePrueba": "test",
+    "cantidadPreguntas": "2",
+    "fechaInicio": "2023-12-27",
+    "fechaFinalizacion": "2023-12-28"
+  },
+  "preguntas": [
+    "¿Cómo se declara una variable en JavaScript?",
+    "Explique el concepto de un bucle \"for\" en JavaScript."
+  ]
+}

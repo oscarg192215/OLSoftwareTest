@@ -1,0 +1,97 @@
+﻿@model IEnumerable<OLSoftwareTest.Models.AspirantesViewModel>
+@{
+    ViewData["Title"] = "Pruebas por Aspirante";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<table class="table table-responsive-md">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("NombreUsuario")
+            </th>
+            <th>
+                @Html.DisplayName("Nombre")
+            </th>
+            <th>
+                @Html.DisplayName("Apellido")
+            </th>
+            <th>
+                @Html.DisplayName("Documento")
+            </th>
+            <th>
+                @Html.DisplayName("Celular")
+            </th>
+            <th>
+                @Html.DisplayName("Prueba")
+            </th>
+            <th>
+                @Html.DisplayName("Cantidad Preguntas")
+            </th>
+            <th>
+                @Html.DisplayName("Inicio")
+            </th>
+            <th>
+                @Html.DisplayName("Finalizacion")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                SelectList dato = ViewBag.Usuarios;
+                string usuario = dato.Where(x => x.Value == item.id_login).FirstOrDefault().Text;
+                <tr>
+                    <td>
+                        @if (usuario != null && usuario.Any())
+                        {
+                            @usuario
+                        }
+                        else
+                        {
+                            @Html.Display("")
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_aspirante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellido_aspirante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.documento_aspirante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.celular_aspirante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_prueba)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cantidad_preguntas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_inicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_finalizacion)
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    <div>
+                        No hay registros para mostrar
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

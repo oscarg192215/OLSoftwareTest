@@ -1,0 +1,34 @@
+﻿@model OLSoftwareTest.Models.DTO.EstadosPruebaAspirante
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h3>@ViewData["Title"] </h3>
+<br />
+
+<h4>Estadosde Pruebas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_estado_prueba_aspirante" />
+            <div class="form-group">
+                <label asp-for="nombre_estado" class="control-label"></label>
+                <input asp-for="nombre_estado" class="form-control" />
+                <span asp-validation-for="nombre_estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion_estado" class="control-label"></label>
+                 <textarea rows="3" cols="45" asp-for="descripcion_estado"></textarea>
+                <span asp-validation-for="descripcion_estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aceptar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-info">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
